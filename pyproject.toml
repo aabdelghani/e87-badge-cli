@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "e87-badge-cli"
+version = "0.1.0"
+description = "Program the E87 round Bluetooth smart badge from a Linux PC, no phone app needed"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+keywords = ["bluetooth", "ble", "e87", "jieli", "badge"]
+dependencies = [
+    "e87-badge @ git+https://github.com/jumpingmushroom/e87_badge@c0b56f8cc4159ada99eac721b6414a3d8f01e933",
+    "bleak>=0.22",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+badge = "e87cli.cli:main"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/e87cli"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
